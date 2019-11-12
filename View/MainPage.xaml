@@ -1,0 +1,50 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NoteVM1011"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:NoteVM1011.ViewModel"
+    xmlns:Custom="using:Microsoft.Xaml.Interactivity" xmlns:Custom1="using:Microsoft.Xaml.Interactions.Core"
+    x:Class="NoteVM1011.View.MainPage"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.DataContext>
+        <viewModel:NoteVM/>
+    </Page.DataContext>
+    <StackPanel Orientation="Horizontal">
+
+        <ListView ItemsSource="{Binding NoteCatalog.Notes}"  SelectedItem="{Binding SelectedNote, Mode=TwoWay}" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate  >
+                    <StackPanel Orientation="Vertical" >
+                        <StackPanel Background="AntiqueWhite" Orientation="Horizontal" Spacing="10">
+                            <TextBlock Text="{Binding Nr}" />
+                            <TextBlock Text="{Binding Emne}"/>
+                        </StackPanel>
+                        <TextBlock Text="{Binding Tekst}"/>
+                        <TextBlock Text="{Binding Dato.Date}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+        <StackPanel>
+            <StackPanel Spacing ="20">
+                <TextBox   Text="{Binding SelectedNote.Nr, Mode=TwoWay}" />
+                <TextBox   Text="{Binding SelectedNote.Emne, Mode=TwoWay}" />
+                <TextBox   Text="{Binding SelectedNote.Tekst, Mode=TwoWay}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Spacing="20">
+                <Button Content="Remove"  Command="{Binding RemoveCommand}" Margin="5,5,5,5" />
+                <Button Content="Add" Command="{Binding AddCommand}" Margin="5,5,5,5"/>
+                <Button Content="Update" Command="{Binding UpdateCommand}" Margin="5,5,5,5"/>
+                
+                  <Button Content="Go to page 2" Click="ButtonBase_OnClick"></Button>
+                
+            </StackPanel>
+
+        </StackPanel>
+    </StackPanel>
+
+</Page>

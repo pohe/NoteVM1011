@@ -1,0 +1,31 @@
+﻿<Page
+    x:Class="NoteVM1011.View.Page2"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NoteVM1011.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:NoteVM1011.ViewModel"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+<Page.DataContext>
+        <viewModel:NoteVM></viewModel:NoteVM></Page.DataContext>
+    <StackPanel>
+        <ListView ItemsSource="{Binding NoteCatalog.Notes}"  SelectedItem="{Binding SelectedNote, Mode=TwoWay}" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate  >
+                    <StackPanel Orientation="Vertical" >
+                        <StackPanel Background="AntiqueWhite" Orientation="Horizontal" Spacing="10">
+                            <TextBlock Text="{Binding Nr}" />
+                            <TextBlock Text="{Binding Emne}"/>
+                        </StackPanel>
+                        <TextBlock Text="{Binding Tekst}"/>
+                        <TextBlock Text="{Binding Dato.Date}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+<Button Content="Go to MAinpage" Click="ButtonBase_OnClick" />
+    </StackPanel>
+</Page>
